@@ -1,4 +1,5 @@
 const startBtn = document.getElementById('start-btn');
+const restartBtn = document.getElementById('restart-btn');
 const gameArea = document.getElementById('game-area');
 const scoreDisplay = document.getElementById('score');
 const timeDisplay = document.getElementById('time');
@@ -14,11 +15,20 @@ let timerInterval;
 const catchSound = new Audio('catch.mp3');
 const gameOverSound = new Audio('gameover.mp3');
 
+// Start button
 startBtn.addEventListener('click', () => {
-  startBtn.style.display = 'none';    // Hide start button
-  gameArea.style.display = 'block';   // Show game area
-  document.querySelectorAll('p').forEach(p => p.style.display = 'block'); // Show score & timer
+  startBtn.style.display = 'none';
+  gameArea.style.display = 'block';
+  document.querySelectorAll('p').forEach(p => p.style.display = 'block');
   startGame();
+});
+
+// Restart button
+document.addEventListener('click', (event) => {
+  if (event.target.id === 'restart-btn') {
+    gameOverSound.play(); // Play only after user interaction
+    startGame();
+  }
 });
 
 function createBug() {
@@ -55,6 +65,10 @@ function startGame() {
   scoreDisplay.textContent = score;
   timeDisplay.textContent = timeLeft;
   gameOverText.style.display = 'none';
+  gameArea.style.display = 'block';
+
+  clearInterval(gameInterval);
+  clearInterval(timerInterval);
 
   gameInterval = setInterval(createBug, 1000);
 
@@ -71,7 +85,8 @@ function endGame() {
   clearInterval(gameInterval);
   clearInterval(timerInterval);
   if (bug) bug.remove();
-  gameOverSound.play();
   gameOverText.style.display = 'block';
+  gameArea.style.display = 'none';
 }
+
 
