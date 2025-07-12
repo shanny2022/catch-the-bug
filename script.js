@@ -1,3 +1,4 @@
+const startBtn = document.getElementById('start-btn');
 const gameArea = document.getElementById('game-area');
 const scoreDisplay = document.getElementById('score');
 const timeDisplay = document.getElementById('time');
@@ -12,6 +13,13 @@ let timerInterval;
 // Load sound files
 const catchSound = new Audio('catch.mp3');
 const gameOverSound = new Audio('gameover.mp3');
+
+startBtn.addEventListener('click', () => {
+  startBtn.style.display = 'none';    // Hide start button
+  gameArea.style.display = 'block';   // Show game area
+  document.querySelectorAll('p').forEach(p => p.style.display = 'block'); // Show score & timer
+  startGame();
+});
 
 function createBug() {
   if (bug) bug.remove();
@@ -31,7 +39,6 @@ function createBug() {
     bug.remove();
     bug = null;
 
-    // Increase speed every 10 points
     if (score % 10 === 0) {
       clearInterval(gameInterval);
       let newSpeed = Math.max(300, 1000 - (score * 20));
@@ -43,6 +50,12 @@ function createBug() {
 }
 
 function startGame() {
+  timeLeft = 30;
+  score = 0;
+  scoreDisplay.textContent = score;
+  timeDisplay.textContent = timeLeft;
+  gameOverText.style.display = 'none';
+
   gameInterval = setInterval(createBug, 1000);
 
   timerInterval = setInterval(() => {
@@ -62,4 +75,3 @@ function endGame() {
   gameOverText.style.display = 'block';
 }
 
-startGame();
