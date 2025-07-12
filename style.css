@@ -20,4 +20,13 @@ body {
   border-radius: 50%;
   position: absolute;
   cursor: pointer;
+  animation: fly 0.5s infinite;
+}
+
+@keyframes fly {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(10px, -10px); }
+  50%  { transform: translate(-10px, 10px); }
+  75%  { transform: translate(10px, 10px); }
+  100% { transform: translate(0, 0); }
 }
