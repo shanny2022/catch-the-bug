@@ -9,7 +9,7 @@ let bug = null;
 let gameInterval;
 let timerInterval;
 
-// Load sound effects
+// Load sound files
 const catchSound = new Audio('catch.mp3');
 const gameOverSound = new Audio('gameover.mp3');
 
@@ -31,7 +31,7 @@ function createBug() {
     bug.remove();
     bug = null;
 
-    // Level up: speed increases every 10 points
+    // Increase speed every 10 points
     if (score % 10 === 0) {
       clearInterval(gameInterval);
       let newSpeed = Math.max(300, 1000 - (score * 20));
@@ -63,4 +63,3 @@ function endGame() {
 }
 
 startGame();
-
