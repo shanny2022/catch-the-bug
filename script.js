@@ -1,25 +1,16 @@
 const gameArea = document.getElementById('game-area');
 const scoreDisplay = document.getElementById('score');
-const missedDisplay = document.getElementById('missed');
 const gameOverText = document.getElementById('game-over');
 
 let score = 0;
-let missed = 0;
 let bug = null;
 let gameInterval;
 
 function createBug() {
   if (bug) {
-    // User missed it!
-    missed++;
-    missedDisplay.textContent = missed;
-    bug.remove();
-  }
+  bug.remove(); // just remove the old bug
+}
 
-  if (missed >= 5) {
-    endGame();
-    return;
-  }
 
   bug = document.createElement('div');
   bug.classList.add('bug');
