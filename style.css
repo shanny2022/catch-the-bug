@@ -11,6 +11,7 @@ body {
   border: 3px solid #000;
   position: relative;
   background-color: #e0ffe0;
+  display: none; /* hidden until game starts */
 }
 
 .bug {
@@ -24,9 +25,31 @@ body {
 }
 
 @keyframes fly {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(10px, -10px); }
-  50%  { transform: translate(-10px, 10px); }
-  75%  { transform: translate(10px, 10px); }
-  100% { transform: translate(0, 0); }
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(-10px, 10px);
+  }
+  75% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Hide score and timer before game start */
+p {
+  display: none;
+}
+
+#start-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
